@@ -1,0 +1,82 @@
+COLLABORATE WITH OTHERS WITH MARKDOWN AND GITHUB PAGES
+(https://docs.microsoft.com/en-us/learn/paths/collaborate-markdown-github-pages/)
+================================================
+Do you want to communicate more effectively with other GitHub users? Are you looking for free way to promote your GitHub project? Learn how to use Markdown effectively communicate with others in your GitHub issues, pull requests, comments, and documentation. Then learn how to build project sites and blog posts to promote your projects with GitHub pages.
+In this learning path, you'll learn how:
+--> Markdown enables you to organies your thoughts through code, images, lists, and tables
+--> GitHub-Flavored Markdown (GFM) enables syntax highlighting for popular programming languages and enables you to link to issues, pull requests, and commits.
+--> GitHub Pages, helps you create project pages and blog posts that include custom themes.
+====
+#Prerequisites 
+--> GitHub Account.
+====
+
+1. Introduction to GitHub
+Learn to use key GitHub featuers, including issues, notifications, branches commits, and pull requests.
+====
+#Learnng Objectives
+In this module, you will:
+--> Communicate with the project community in issues
+--> Manage notifications for project events
+--> Create branches to manage work in parallel
+--> Make commits to update project source
+--> Introduce changes with pull requests
+--> Deploy a web page ti Github Pages
+====
+#Introduction
+Github is a development platform that enables you to host and review code, manage project, and build software alongside 50 milion developers. Why is everyone building on GitHub? Because it provieds the important DevOps features companies and organizations of all size need for their public and private project. Whether it's palnning features, fixing bugs, or collaborating on changes, GitHub is the place where the world's software developers gather to make things. And then make them better. 
+In this module, you will learn to use key GitHub features, including issues, notifications, branches, commits, and pull requests.
+--
+#Learning Objectives
+In this module, you will:
+--> Communicate with the project community in issues
+--> Manage notifications for project events
+--> Create branches to manage work in parallel
+--> Make commits to update project source
+--> Introduce changes with pull requests
+--> Deploy a web page to GitHub Pages
+--> Recognize the differences between Git and GitHub and the roles they playh in the software development lifecycle.
+--> Describe a repository fork and how ti differs from a clone.
+--> Explain the funcitonality of repository labels and where to apply them in issues and pull requests.
+--
+#Prerequisites
+--> A GitHub account
+--
+#What is GitHub?
+Here, we discuss the key GitHub features you use on a daily basis to manage and contribute to software projects.
+--
+#The GitHub flow
+In addition to providing a platfoem for collaborative software developent, GitHub alsow offers a workflow designed to optimize use of its various features. While this unit offers a cursory overview of important platform components, it's recommended that you firsr review Understanding the GitHub flow (https://guides.github.com/introduction/flow/).
+[Understanding the GitHub flow]
+GitHub flow is a ligthweight, branch-based workflow that supports teams and projects where deployments are made regularly. This guide explains how and whyh GitHub flow works.
+[GAMBAR: ]
+Here is the steps
+1. Create a Branch
+When you're working on a project, you're going to have a bunch of different features or ideas in progress at any given time- some of which are ready to go, and others which are not. Branching exists to help you manage this workflow. When you create a branch in your project, you're creating an environment where you can try out new ideas. Changes you make on a branch don't affect the main branch, so you're free to experiment and commit chanegs, safe in the knowledge that your branch won't be merged until it's ready to be reviewed by someone you're collaborating with.
+==>Pro Tip<==
+Branching is a core concept in Git, and the entire GitHub flow is based upon it. There's only one rule: anything in the main branch is always deployable. Because of this, it's extremely important that your new branch is created off of main when working on a feature or a fix. Your branch name should be descriptive (e.g., refactor-authentication, user-content-cache-key, make-retina-avatars), so that others can see what is being worked on.
+2. Add Commits
+Once your branch has been created, it's time to start making changes. Whenever you add, edit, or delete a file, you're making a commit, and adding them to your branch. This process of adding commits keeps track of your progress as your work on a feature branch. Commits also create a transparent history of your work that others can follow to understand what you've done and why. Each commit has an associated commit message, which is a description explaining why a particular change was made. Furthermore, each commit is considered a separate unit of change. This lets you roll back changes if a bug is found, or if you decide to head in a different direction.
+==>Pro Tip<==
+Commit messages are important, especially since Git tracks your changes and then displays them as commits once they're pushed to the server. By writing clear commit messages, you can make it easier for other people to follow along and provide feedback.
+3. Open a Pull Request
+Pull Requests initiate discussion about your commits. Because they're tightly integrated with the underlying Git repository, anyone can see exactly what changes would be merged it they accept your request. You can open a Pull Request at any point during the development process: when yu have little or no code but want to share some screenshots or general ideas, when you're stuck and need help or advice, or when you're ready for someone to review your work. By using GitHub's @mention system in your Pull Requests message, you can ask for feedback from specific people or teams, whether they're down the hall or ten time zones away.
+==>Pro Tip<==
+Pull Requests are useful for contributing to open source projects and for managing changes to share repositories. If you're using a Fork & Pull Model, Pull Requests provide a way to notify project maintainers aobut the changes you'd like them to consider. If you're using a Shared Repository Model, Pull Requests help start code review and conversation about proposed changes vefore they're merged into the main branch.
+4. Discuss and Review your code
+Once a Pull Request has been opened, the person or team reviewing your changes may have questions or comments. Perhaps the coding style doesn't match the project guidelines, the change is missing unit tests, or maybe everything looks great and props are in order. Pull Requests are designed to encourage and capture this type of conversation. You can also continue to push to your branch in light of discussion and feedback about your commits. If someone comments that you forgot to do something or if there is a bug in the code, you can fix it in your branch and push up the change. GitHub will show your new commits and any additional feedback you may receive in the unified Pull Request view.
+==>Pro Tip<==
+Pull Request comments are written in Markdown, so you can embed images and emoji, use pre-formatted text blocks, and other lightweight formatting.
+5. Deploy
+With GitHub, you can 
+--
+#Git
+
+
+===========================================================
+2. Communicate effectively on GitHub by using Markdown
+
+===========================================================
+3. Create and host web sites by using GitHub Pages
+
+===========================================================

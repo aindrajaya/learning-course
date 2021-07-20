@@ -1,0 +1,17 @@
+{
+  "name": "token-try",
+  "version": "1.0.0",
+  "description": "this is to learn token",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aindrajaya",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.4.0"
+  }
+}
