@@ -76,7 +76,132 @@ Now that your changes have been verified in production, it is time to merge your
 By incorporating certain keywords into the text of your Pull Request, you can associate issues with code. When your Pull Request is merged, the related issues are also closed. For eaxmple, entering the phrase Closes #32 would close issue number 32 in the repository. Article(https://help.github.com/articles/closing-issues-via-commit-messages)
 --
 #Git and GitHub
-
+As you work with Git and Github, you may wonder about the difference between the two. 
+GIT is a distributed version control system (DVCS) that allows multiple developers or other contributors to work on a project. It provides a way ot work with one or more local branches and push them to a remote repository. Git is responsible for everything Github-related that happens locally on your computer. Key features provided by Git include:
+--> Installed and used on your local machine
+--> Handles version control
+--> Supports branching
+To learn more about Git, see Using common Git commands.
+GITHUB is a cloud platform that uses Git as its core technology. It simplifies the process of collaborating on projects and provides a website, command-line tools, and overall flow that allows devleoper and users to work together. GitHub acts as the "remote repository" mentioned previously in the Git section. Key features include:
+--> Issues
+--> Discussions
+--> Pull requests
+--> Notification
+--> Labels
+--> Actions
+--> Forks
+--> Projects
+To learn more about GitHub, see Getting started with GitHub.
+--
+#Issues
+ISSUES are where most of the communication between a project's consumers and development team occurs. An issues can be created to discuss a broad set of topics, including bug reports, features requests, documentation clarifications, and more. Once an issues has been created, it can be assigned ot ownders, labels, projects, and milestones. You can also associate issues with pull requests and other GitHub items to provide future traceability.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-issue.png]
+To learn more about GitHub Issues, see Mastering Issues.
+--
+#Notifications
+As a collaborative platform, GitHub offers notifications for virtually every event that takes place within given workflow. These notifications can be finely tuned to meet your preferences. For example, you can subscribe to all ussue creations and edits on a proejct, or you can just receive notifications for issues in which you are mentioned. You can also decide whether you receive notifications via email, web & mobile, or both. To keep track for all of your notifications across different projects, use the GitHub Notifications dashboard.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-notifications.png]
+To learn more about GitHub notifications, see Configuring notifications.
+--
+#Branches
+BRANCHES are the preferred way to create ahgnes in the GitHub flow. They provide isolation so that multiple people may simultaneously work on the same code in a controlled way. This model enables stability among critical branches, such as main, while allowing complete freedom for developers to commit any changes they need to meet their goals. Once the code from a branch is ready to become part of the main branch, it may be merged via pull request.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-branching.png]
+To learn more about GitHub branches, see About branches.
+--
+#Commits
+A COMMIT is a change to one or more files on a branch. Every time a commit is created, it is assigned a unique ID and tracked, along with the time and contributor. This provides a clear audit trail for anyone reviewing the history o a file or linked item, such as an issue or pull request. 
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-commits.png]
+To learn more about GitHub commits, see Committing and reviewing changes to your project.
+--
+#Pull Requests
+A PULL REQUEST is the mechanism used to signal that the commits from one branch are ready to be merged into another branch. The developer submitting the pull request will often request one or more reviewers to verify the code and approve the merge. These reviewers have the opportunity to comment on changes, add their own, or use pull request itself for further discussion. Once the changes have been approved (if approval is required), the pull request's source branch (the compare branch) may be merged in to the base branch.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-pull-request.png]
+To learn more about GitHub pull requests, see About pull requests.
+--
+#Labels
+Labels provide a way to categorize and organize issues and pull requests in a repository. As you create a GitHub repository several labels will automatically be added for you and new ones can also be created. Examples of Labels include:
+--> bud
+--> documentation
+--> duplicate
+--> help wanted
+--> enhancement
+--> question
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-labels.png]
+To learn more about GitHub labels see About labels.
+--
+#Actions
+GITHUB ACTIONS provide task automation and workflow functionality in a repository. Actions can be used to streamline processes in your software development lifecycle and implement continous integration and continous deployment (CI/CD). GitHub Actions are compoes of the following components:
+--> Workflows: Automated processes added to your repository.
+--> Events: An activity that triggers a workflow
+--> Jobs: A set of steps that execute on a runner
+--> Steps: A task that can run one or more command (actions)
+--> Actions: Standalone command that can be combined into steps. Multiple steps can be combined to create a job.
+--> Runners: Server that has the GitHub Actions runner application installed
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-actions.png]
+To learn more about GitHub actions see Introduction to GitHub Actions.
+--
+#Cloning and Forking
+GitHub provides multiple ways to copy a repository so that you can work on it.
+--> Cloning a Repository, will make a copy of the repository and its history on your local machine. If you have write access to the repository you can poush changes from your local machine to the remote repository (called the origin) as they're completed. To clone a repository you can use the git clone url command or the GitHub CLI's gh repo clone url command.
+--> Forking a Repository, makes a copy of the repository in your GitHub account. The parent repository is referred to as the upstream while you forked copy is referred to as the origin. Once you've forked a repository into your GitHub account you can clone it to your local machine. Forking allows you to freely make changes to a project without affecting the original upstream repository. To contribute changes back to the upstream repository you create a pull request from your forked repository. You can also run git commands to ensure that your local copy stays synced with the upstream repository.
+When would you clone a repository versus for a repository? If you're working with a repository and have write acces you can clone it to your local machine. From there you can make modifications and push your changes directly to the origin repository. If you need to work with a repository created by another ownder such as github/example and don't have write access, you can for the repository into your GitHub account, and then clone the fork to your local machine. To see this visually, let's assume that your GitHub account is called githubtraining for this example. Using the GitHub website you can fork githubtraining or any other examples into your account. From there you can clone the forked version of the repository to your local machine. These steps are shown in the following image.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-fork-clone.png]
+Changes can be made to your local copy of githbutraining/example and then pushed back to your remote origin repository (githubtraining/example). The changes can then be submitted to the github/example upstream repository using a pull requests as shown next.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-fork-pullrequest.png]
+To learn more, see Fork a repo.
+--
+#GitHub Pages
+GITHUB PAGES is a hosting engine that's built right into your GitHub account. By following a few conventions, and enabling the feature, you can build yout own static generated HTML and markdonw code pulled directly from your repository.
+[GAMBAR: https://docs.microsoft.com/en-us/learn/github/introduction-to-github/media/2-github-pages.png]
+To learn more, see GitHub Pages.
+---------------------
+#Exercise - A Guided tour of GitHub
+In this exercise you use GitHub Learning Lab to learn about key GitHub features, including issues, notifications, branches, commits, and pull requests. GitHub Learning Lab is an integrated experience that's easy to use. You get feedback and instructions throughout the lab as you work in your GitHub repository. Here are a few suggestions to make the Learning Lab exercise more enjoyable.
+--> GitHub Learning Lab is installed on your account in the first step of this lab. If you're asked, be sure to install it on all repositories. This won't affect the organizations that you're a member of, just the personal repositories that the lab creates for you.
+--> After the install, you may be returned to the main page. To get back to your lab, just use the button on the bottom of this page.
+--> GitHub will create a repository for you to use. Give permissions to GitHub Learning Lab.
+--> GitHub Learning Lab will set itself as a reviewer on your pull requests so that it can give you the next steps just in time. Sometimes reviewing your pull request will take a few minutes.
+--> When you're given a link for creating or editing a file or told to open a tab, be sure to open it in another tab in your browser. This way you can come back to the instructions without leaving the file.
+--> Comments and instructions will continue on your pull request or in an issue on your repository.
+When you've finished the exercise in GitHub, return here for:
+A quick knowledge check
+A summary of what you've learned
+To earn a badge for completing this module
+----------------------
+#Knowledge check
+Choose the best response for each question. Then select "Check your answers."
+Q: What is the best way to report a bug to a GitHub project?
+A: Search for the bug in the project's existing issues and create a new one if it hasn't been reported yet.
+==
+Q: Suppose you have created a bug fix on a new branch and want it to become part of the next production build generated from the main branch. What should you do next?
+A: Create a pull request to merge your new branch into the main branch.
+==
+Q: Suppose you'd like to work with a project on GitHub but you don't have write access to the project. What can you do to contribute?
+A: Fork the project's repository to your GitHub account, clone the forked repository to your local machine, push changes to your repository, and submit a pull request to the target (upstream) repository. 
+----------------------
+#Summary
+In this module, you learned about the key featurs of GitHub, including issues, commits, and pull requests. You also used GitHub Pages to publish a public site based on the contents of your project.
+You learned about:
+--> Communicating with the project community in issues
+--> Managing notifications for project events
+--> Creating branches to manage work in parallel
+--> Making commits to update project source
+--> Introducing changes with pull requests
+--> Deploying a web page to GitHub Pages
+--> Differences between Git and GitHub and the roles they play in the software development lifecycle.
+--> How a repository fork differs from a clone
+--> Repository labels and where to apply them in issues and pull requests
+Now that you're familiar with the basics of GitHub, learn to Upload your project by using GitHub best practices(https://docs.microsoft.com/en-us/learn/modules/upload-project-github/).
+----------------------
+#Learn More
+Here are some links to more information on the topics we discussed in this module.
+--> Setting up and managing organizations and teams (https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams)
+--> Committing changes to your project (https://help.github.com/en/github/committing-changes-to-your-project)
+--> Collaborating with issues and pull requests (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)
+--> About the role of labels (https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/about-labels)
+--> GitHub Actions (https://docs.github.com/en/free-pro-team@latest/actions)
+--> Fork a repo (https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
+--> Working with GitHub Pages (https://help.github.com/en/github/working-with-github-pages)
 
 ===========================================================
 2. Communicate effectively on GitHub by using Markdown
