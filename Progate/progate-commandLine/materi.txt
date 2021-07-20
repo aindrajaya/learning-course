@@ -1,0 +1,141 @@
+COMMAND LINE
+--------------------
+The command line is an essential tool for software development. By using commands, you can execute a wide variety of programs on your computer. Let's learn the fundamental UNIX commands necessary for development in this course. 
+
+#Command Line
+The command line is a tool for interacting with a computer using only text (also known as a text interface) rather than other methods like clicking and scrolling. Let's learn these skills thoroughly because they are essential for developing websites and applications! UNIX command is a type of command that is used in Linux and MacOS.
+
+#Command
+You can give instructions to the computer by entering commands into what is called a terminal. Let's start looking at what kind of commands there are in the next slides. There is no need to write $. since it is a symbol often used to signify where you can begin typing in commands.
+[touch sample.txt -> create new file]
+
+#Creating a File
+First, let's look at the command for creating new files, the touch command. You can create an empty file by typing touch file_name and executing. it
+[$ touch file_name]
+
+#Executing a Command
+You can execute a command by pressing the Enter key after typing it.
+[$ touch beginner.txt]
+
+#Displaying the COntent of a File
+You can also display the content of a file with the cat command to use the cat command, type cat file_name
+[$ cat file_name
+$ cat about.txt
+--> Lets learn programming]
+
+#Error of a Command
+If you specify a file that does not exist using the cat command, you will get an error, as the command is invalid.
+[$ cat example.txt //a file that does no exist
+--> cat: example.txt: no suh file or directory]
+
+#Tab Completion
+The command line also has a useful completion feature. Like in the image, if you press the Tab key while entering a file name or folder name, the rest of the name gets auto-completed. Using tab completino not only improves efficiency but prevents typing mistakes too.
+[cat abaout.txt
+--> let's learn programming]
+
+#Creating a Directory
+You can create a new directoryh using a command as well. A directory is commonly used interchangeably with the term folder. To create a directory, yse the mkdir command as follows: mkdir directory_name.
+[$ mkdir directory_name]
+
+#File structure
+When using the command line, it is importatn to be aware of the file structure. In our eaxmple file structure below, we have many branches. FOr example, the progate directory contains files and directories like about.txt and the languages directory. Inside the languages directory is the index.txt file.
+
+#Current Directory
+ON the command line, the directory that you're currently in is called the current directory. For example, touch file.txt will craete a file named file.txt in the current directory. If you want to create a new file in the html directory, you can do so by changing the current directory to the html directory.
+
+#cd
+You can use the cd command to move to other directories. By entering cd directory_name, you can move to the specified directory.
+[$ cd directory_name]
+
+#The Current Directory
+The current directory is displayed to the left of $ (it is ~ in the progate directory, but don't worry aobut it for now. We'll explain it in detail later)
+[~ $ cd html
+html $|]
+
+#Error
+You'll get an error if you specify a directory that does not exits with the cd command. Also, note that you can only specify a directory name, not a file name.
+[$ cd test //a filder that does no exits
+bash: cd: test: no sush file or directory
+$ |]
+
+#Root Directory
+In the file structure of a computer, there is root directory at the very top. The root directory is represented by /. (Note that the root directory is omitted in the file structure of the exercise screen)
+
+#Checking the Current Directory
+On the command lline, it is important to know the directory you are currently working in. There is a command called pws to check that. When you execute the pwd command as shown below, all directories from the root directory to the current directory are displayed.
+[$ pws
+--> /home/progate
+--> $ |]
+
+#Displaying the Content of the Directory
+When moving between directories, it would be convenient if we could see the lsit of files and directories in the current directory. To do this, you can use the ls command as shown below.
+[$ ls
+--> about.txt beginner.txt html languages
+//all the files and directories in the current directory are displayed]
+
+#What is displayed by "ls"
+Note that the ls command will only disply the directories and files that are direct children of the current directory.
+
+#The Parent Directory
+We've learned how to use the cd command, but we don't know how to move to the parent directory yet. If you want to move to the parent directory, you can use a special symbol .., like cd .. .
+[html$ cd ..
+progate$ ..]
+
+#cd without Specifying a Directory
+If you execute cd without specifying a directory, you can move to what is called a home directory. The home directory is represented by ~ like in the image below.
+[languages$ pwd
+--> /home/progate/languages
+languages$ cd (moves to the home directory)
+~ $ pwd
+/home/progate]
+
+#The Home Directory
+The Home directory refers to the base directory for the user. Since it is important, moving to the home directory is made to be esey. /home/prigate is the home directory for this lesson.
+
+#Working with Files and Directories
+From this point on, we're going to learn how to perform a variety of operations like moving, copying, and deleting files with commands
+
+#Moving a File
+Let's start with the command to move a file. To do this, we use the mv command. By typing mv file_to_move destination_directory, you can move a file to the specified directory.
+[$ mv file_to_move destinatio_directory]
+
+#Moving a Directory
+With the mv command, you can also move directories, not just files. By entering mv directory_to_move destination_directory, you can move all the files and directories under that directory.
+[$ mv directory_to_move destination_directory]
+
+#Renaming a File
+The mv command, which we used to move files and directories earlier, can also be used to rename a file. You can rename a file by typing mv old_file_name new_file_name
+[-> renaming a file
+$ mv old_file_name new_file_name
+-> renaming a directory
+mv old_directory_name new_directory_name]
+
+#Copying a File
+Next, let's look at how to copy files. To do this, we use the cp command. You can copy a file by entering cp file_to_copy new_file_name.
+[$ csp file_to_copy new_file_name]
+
+#Copying a Directory
+With the cp command, you can also copy a directory by adding the -r (Recursive copy) option, like cp -r directory_to_copy new_directory_name
+[cd -r directory_to_copy new_directory_name]
+
+#Error with the cp Command
+If you try to copy a directory without adding the -r option, you will get an error and the command will not be executed.
+[languages $ cp HTML Ruby //-r missing
+--> cp: omitting directory HTML]
+
+#Removing a File
+Newx, we 'll look at how to remove a file. To do this, you can use the rm command, like rm file_to_remove.
+[$ rm file_to_remove]
+
+#Removing a Directory
+You can also remove a directory by adding the -r option to the rm comamnd, like rm -r directory_to_remove. Just like the cp command, you will get an error if you forget to add -r.
+[rm -r directory_to_removels]
+
+#REVIEW
+The last exercies is the review of all the commands we've learned so far. We'll create a file structure like in the image below. But, before the exercise, there's one last thing that we should learn.
+
+#The Commands History
+On the command line, you can go through the command history using the up arrow key. This is very convenient when you want to use a command that was executed before.
+[~$ ls
+--> about.txt languages
+~ $ cd languages]

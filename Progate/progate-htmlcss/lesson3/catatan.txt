@@ -1,0 +1,151 @@
+RESPONSIVE WEB DESIGN
+-----------------
+Responsive Web Design makes your web page look good on all devices, like desktops, tablets, and smartphones. In this lesson, we'll be applying Responsive Web Design to the web page we developer in the previous lesson.
+
+1. Intro Responsive web design
+Since we had the width fixed to 1170px in the previous lesson, it will not fit into devices with smaller screens. By applying Responsive Web Design, we can optimize the layout to be suitable for each screen size.
+
+2. Media Queries
+From here on, we'll learning about media queries. They allow you to specify different CSS depending on the size of the device.
+--> Using Media Queries
+Let's learn how to write media queris. The syntax is as follows: @media(condition){.....}. The CSS inside { } will be applied only when the condition is met.
+[@media(max-width: 1000px){
+  /CSS appliead when condition mathces/
+}]
+--> max-width and min-width
+We can specify the max-width or the min-width as a condition. When max-width: 1000px is specified, the CSS will be applied only when the width of the screen is 1000px or less. On the other hand, with mind-width the CSS will be applied when the width of the screen is the specified size or more.
+[h1{
+  color: red;
+}
+
+@media(max-width: 1000px){
+  h1{
+    color: blue; //the css is applied when the screen width is 1000px or less
+  }
+}]
+--> Breakpoints
+The value you specify for the max-width or the min-width is called breakpoint. We'll be using 670px as the breakpoint for smartphones, and 1000px for tablets. 
+--> Layout with Media Queries
+IN the previous lesson, we learned how to change the color of the next based on the width of hte device. NOw ;et's learn how to change the layout.
+--> Changing the Width Using Media Queries
+When you have several items in a row, they will look too small when displayed on smaller devices. Let's fix this by changing the width of each item for smaller devices.
+[.item{
+  width: 25%;
+}
+
+@media(max-width: 1000px){
+  .item{
+    width: 50% //the css is appliead when the screen width is 1000px or less
+  }
+}]
+--> box-sizing
+The image on the left shows what would happen if we added padding to the items in the previous exercise. Having four items with 25% width along with the padding will cause the width to be greater ahtn 100%, and so the last item will not fit. We can fix this using box-sizing: border-box.
+--> How box-sizing works
+By setting the box-sizing property to border-box, and element's width will include the padding and the border. Therefore, the layout will not break when you add padding or border (this is not the case with margin)
+--> Applying CSS to All Elements
+You can use * selector you want to apply CSS to all the elements, like in the image below. It's a good practice to apply box-sizing: border-box; to all the elements because it will make it easier to adjust the layout of the web page.
+[/*APply box-sizing: border-box; to all elements*/
+*{
+  box-sizing: border-box;
+}]
+#--> Making Your Page Responsive
+We've learned the basics of Responsive Web Design.
+Let's put it into practice by applying it to the web page that we made in the previous lesson. To begin, we have a few things that we need to prepare.
+--> viewport
+In preparation for applying Responsive Web Design to the page, let's set the viewport inside the <head> tag. Without the viewport, the media queries will not function properly on tablets and smartphones, You don't have to memorize the content of the viewport.
+[<head>
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+</head>]
+--> width: 100%
+In the previous lesson, we had the width fixed to 1170px, so it won't fit into devices with smaller screens. Let's change the width to 100% so that it fills whatever the width for any device.
+#--> Loading responsive.css
+We could write our media queries in stylesheet.css, but we'll put them in a different file, responsive.css, to keep our CSS organized. Make sure that you load responsive.css below the viewport.
+[<head>
+  <---viewport>
+  <link rel="stylesheet" href="responsive.css">
+</head>]
+--> The Width of lesson
+Let's start with the layout for tablets. With tablets, there isn't enough width for fit four lessons in one row. Let's fix this by placing only two lessons in one row. We can do this by changing the width or lesson to 50%.
+[@media(max-width: 1000px){
+  .lesson{
+    width: 50%;
+  }
+}]
+#--> Fixing the Background
+Since we've changed the lessons to be shown in two rows, they no longer fit inside the section with the background color. This is because the height of lesson-wrapper is fixed to 580px. Let's remove this so that the height of lesson-wrapper will be determined by its children.
+--> float and the Parent Element
+By default, an element's height is determined by that of its children. But this not the case when all the child elements have float applied, in which case the height of the parent will be 0. This is because the float ing elements will not affect the parent.
+--> Clearing the float
+Let's learn how to add height to an element with floating children. We can do this by adding an empty <div> tag wit clear: left; applied. clear; left; cancels the children's float state, so their heigth will affect the parent element's height.
+[<div class="lessons">
+   ...
+   <div class="clear"></div>
+   //add a <div> with the class name of "clear"
+</div>
+->> stylesheets.css
+.clear{
+  clear: left;
+  //clears elements floated to the left.
+}]
+
+#-->The Smartpohone Layout
+Now let's work on the layout for smartphones. We'll set the breakpoints to 670px. Let's first change the width of lesson to 100% to make a single column layout.
+[@media(max-width: 670px{
+  //set the breakpoint
+  .lesson{
+    width: 100%; //set the width to 100% to make a single column layout
+  }
+})]
+--> aligning the footer
+Also, let's set the footer to align in the center when viewed from smartphones devices.
+[@media(max-width:670px){
+  ...
+  footer{
+    text-align:center; //set the footer to align in the center
+  }
+}]
+#--> Adjusting the Buttons
+Next, let's make the buttons spread to the full-width so that they are easier to tap. We'll also adjust the margin between the buttons.
+[@media(max-width: 670px){
+  ...
+  .btn{
+    width: 100%;
+  }
+  .facebook{
+    margin-bottom: 10px;
+  }
+}]
+#--> Masking teh font-size Responsive
+Smaller fonts will fit better in a smaller screen. So, let's adjust the font for each device.
+#--> Handling Large Screens
+We've learnet how to adjust the layout for smaller devices. What about devices with larger screens? For example, if we viewed our web page on a 2000px screen, the lessons will be too far apart from each other.
+--> max-width
+Since we've set the width of container to 100%, it will become too big on a larger screen. We can fix this by setting the max-width. In the example, we've set the max-width to 1170px, so the content inside will always be contained within this limit.
+[.container{
+  max-width: 1170px; //limit the container's maximum width to 1170px
+  width: 100%; //stretch the container width across the screen within max-within
+  ...
+}]
+#--> Making the Header Responsive
+To finish off, let's apply a different header for smartphones. Since the whole menu won't fit, we'll display a menu icon instead (This way, you can display the menu when the icon is tapped)
+--> Hiding and Showing Elements
+We'll hide the menu icon by default and only display it when the device width is 670px or less. To hide an element, we can use display: node; To display a hidden element, we can use display: block;
+[>>index.html
+<a href="#" class="menu-icon">
+  <span class="fa fa-bars"></span>
+</a>
+>>stylesheet.css
+.menu-icon{
+  display: none;
+}
+>>responsice.css
+@media(max-width: 670px){
+  ...
+  .header-right{
+    display: none; //hide the default meno on smartphones
+  }
+  .menu-icon{
+    display:block; //display the menu icon instead
+  }
+}]

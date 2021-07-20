@@ -1,0 +1,66 @@
+LEARN SASS
+-------------------------
+In this lesson, we will learn Sass which will allow to write to write CSS (Cascading Style Sheets) more easily and efficiently. Using Sass makes it easier to build any websites, from a personal site to large scale proejct. We will start by getting a firm grasp of the fundamentals of Sass.
+
+#What is Sass?
+Sass is scripting language that allows you to write CSS in a more convenient and efficient way. There are 2 ways to write Sass, SASS and SCSS syntax. At Progate, we use the SCSS syntax, which is the more common syntax. Note that the file extension is .scss rather than .css.
+
+#Why Sass?
+Some of the benefits of using are shown below. In this lesson, you will learn about these benefits in detail and how to take advantage of them. Merits of Sass: 1. Less writing thatn CSS, 2. Allows you to re-use code.
+
+#Nested Structures
+First, let's look at the nesting structure that is used very often in Sass. With nesting, you can reqrite your CSS as shown in the example below. In this way, Sass allows you to nest selectors in other selectors. So, with Sass, you don't have to write the same selector many times.
+[>>HTML
+<div class="header">
+  <ul>
+  ...
+  </ul>
+</div>
+>>NormalCSS //have to write .header 2 times
+.header{
+  width: 100%;
+}
+.header ul{
+  padding: 10px;
+}
+>>Sass
+.header{ //only need to write .header once
+  width: 100%;
+  ul{ //the css for the ul tag in the .header class witll be treated the same as .header ul
+    padding: 10px;
+  }
+}]
+#Benefits of Nesting
+The larger a site becomes, the more useful nesting becomes. It's especially useful when making changes to class names. If you wanted to change the class name of the header in the example below, you would need to make changes in 3 plaes with normal CSS, but with Sass you only to make one change.
+[>>NormalCSS
+.header{
+  width: 100%;
+}
+.header ul{
+  padding: 10px;
+}
+.header ul li{
+  font-size: 15px;
+}
+>>Sass
+.header{
+  width: 100%;
+  ul{
+    padding: 10px;
+    li{
+      font-size: 15px;
+    }
+  }
+}]
+#Review of:hover
+Before learning about the & symbol, let's review :hover and :active. The state in which the cursosr is hovering over an element is called hover. In CSS, with selector:hover, you can apply specific CSS when the cursor is over an element.
+[>>index.html
+<div>
+  <h1>Progate</h1>
+</div>
+>>stylesheet.css
+div:hover{ //styles a <div> when a cursor is on it
+  background-color:red;
+}]
+#Review of:active
+By using active with a selector, CSS can be applied only while an element
