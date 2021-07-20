@@ -68,9 +68,14 @@ Once a Pull Request has been opened, the person or team reviewing your changes m
 ==>Pro Tip<==
 Pull Request comments are written in Markdown, so you can embed images and emoji, use pre-formatted text blocks, and other lightweight formatting.
 5. Deploy
-With GitHub, you can 
+With GitHub, you can deployh from a branch for final testing in production before mergin to main. Once your pull requests has been reviewed and the branch passes your tests, you can deploy your changes to verify them in production. If your branch causes issues, you can roll it back by deploying the existing main branch to production. 
+Different teams mayh have different deployment strategies. For some, it mayh be best to deploy to a specially provisioned testing environment. For others, deploying directlyh to produciton may be the better choice based on the other elements in their workflow.
+6. Merge
+Now that your changes have been verified in production, it is time to merge your code into the main branch. Once merged, Pull Requests preserve a record of the historical changes to your code. Becaue they're searchable, they let anyone go back in time to understand why and how a decision was made. 
+==>ProTip<==
+By incorporating certain keywords into the text of your Pull Request, you can associate issues with code. When your Pull Request is merged, the related issues are also closed. For eaxmple, entering the phrase Closes #32 would close issue number 32 in the repository. Article(https://help.github.com/articles/closing-issues-via-commit-messages)
 --
-#Git
+#Git and GitHub
 
 
 ===========================================================
