@@ -1,0 +1,983 @@
+PURE REDUX - DAVE CEDDIA
+-------------------------
+1. INTRODUCTION
+Ada permasalahan pada pengembangan frontend sekarang ini yaitu resource berlimpah. Ada ribuan dari library di luar sana, masing2nya melakukan satu hal kecil dan mengelompokkan library2 tersebut untuk menjadi standar yang tertulis tetapi tanpa standar nyata yang terlihat (abstrak). Begitu pula pada ekosistem React terdapat banyak seperti: React, Redux, Webpack, Babel, React Router dan banyak lainnya. Ratusan project starter/boilerplate yang hadir membuatnya menjadi lebih mudah untuk menggabungkan sekumpulan pilihan tersebut secara berama-sama. "Hal itu akan menjadi lebih mudah untuk dipelajari", pemikiran yang berlangsung, "jadi anda tidak perlu membuat semua pilihan tersebut secara mandir".
+Sebaliknya, yang terjadi malah kebalikannya: daripada kewalahan akan pilihan-pilihan yang banyak, sekarang kamu kewalahan dengan banyaknya jumlah dari kode yang hadir secara gratis dengan starter kit nya, dan kamu tidak dapat membayangkan kebanyakan dari bagaimana prasaranan tersebut bekerja. Itu kondisi yang mengerikan.
+Mempelajari segalanya sekali secara besar akan menyebabkan kewalahan. Jadi pada buku ini kita akan memberikan pendekatan yang berbeda. Pendekatan yang lebih realistis. Kita akan mempelajari React secara murni (Pure React)
+{ Pure React: The core concepts of React, in isolation, without Redux, Webpack, and the rest.}
+When you achieve what's contained here- When you learn React cold, you'll able to go on and learn all of its frien with ease: Redux, Router, and the rest. Not only will you be able to learn those libraries, but you will be well-equipped. You'll have a solid foundation. This book has been designed to get yo from zero to React quickly, and with maximum understanding. What you won't be doing here is what plays out in many tutorials across on the we, where you can copyh and paste each block of code until you have a working app at the end. Voila!” they say. “Now you know React and Redux and Webpack!”. You might learn one or two concepts with that approach, but it’s a shaky foundation. Inevitably, when you sit down to write your own app, everything you “learned” instantly vanishes, leaving you staring at a blinking cursor wondering what that first line of code should be. You can only get so far by copying and pasting. And you know this already, otherwise you wouldn’t be here.
+Jadi di buku ini kita akan mengikuti pendekatan yang berbeda: Saya akan menunjukan konsepnya, dengan beberapa contok kode. Lalu (dan ini bagian yang penting) anda akan menggunakan konsep tersebut pada latihan yang ada, sampai berkali-kali. Coba lagi berkali-kali sampai mampu memahami semua konse inti tiap bagian-bagian dari Pure react, dan hal tersebut tidak terlalu banyak.
+--------------
+#What we'll Cover
+We will start where most programming books start, with Hello World – just getting a few words on the screen. From there, we’ll look at how to compose components together and how to work with JSX, React’s HTML-like syntax for rendering elements to the page. Setelah kamu mengerti bagaimana membuat komponen status, anda akan mempelajari tentang "props" sebagai salah satu cara untuk menggunakan/jalur/konsumsi data yang mereka butuhkan, dan "propTypes" untuk mendokumentasi dan debugging sebuah props yang komponen tersebut butuhkan. We’ll cover React’s special “children” prop, which is a powerful tool for building reusable components. Anda akan mempelajari tentang "state", bagaimana hal itu beda dengan "props", dan bagaimana mengorganisasikannya di dalam aplikasi- keduanya dengan pendekatan lama, classes dan term Hooks baru yang menyenangkan. We'll touch on how to make API requests with React (because even though it's not a "React thing", most apps need to do it at some point!), and how to work with form inputs. You'll also learn how to use more advanced features of ReactL the useReducer hook, the useEffect hook, and the Context API.
+-------------
+#Why Just React?
+Without a solid understanding of Reac, learning libraries and tools like Redux and Webpack will only slow down your learning process. It's very tempting to dive and learn it all at once, especially if you have a fun project i mind (or a deadline to meet). However, leranign everything at once will be slower in the long run. Think of these libraries and tools as layers in a foundation. If you were building a house, would you skip some teps to get it done faser? Say, start pouring the concrete before laying some rocks down? Start building the walls on bare earth?. Or how about making a wedding cake: the top part looks the most fun to decorate, so why not start there? Just figure out the bottom part later! No?
+Of course not. You know those things would lead to failure. They would, perhaps counterintuitively, slow things down rather than speed them up. So does it make sense to learn React in tandem with ancillary tools like Webpack + Babel + Redux + Routing + AJAX all at once? Doesn’t that sound like a ton of overwhelming confusion?. Instead, the most efficient approach is to learn these one at a time. This book will teach you how to
+use React, and then you’ll be ready to tackle the next piece of the puzzle.
+----------------------
+#How This Book Works
+--> How Much Time Will This Take?
+The basic concepts of React can be learned in a matter of days. This book covers those basics and also contains exercises after each major concept to reinforce your understanding. Most of the exercises are short. There are a few that are more involved. The principle behind them is the same as the idea behind homework in school: to drill the ideas into your head by combining repetition and problem solving. The theme behind the whole process is this: avoid getting overwhelmed. Quitting won’t get you anywhere. Slow and steady, uh, learns the React.
+--> Build Small Things and Throw Them Away
+This is the awkward middle step that a lot of people skip. Moving on to Redux and other libraries without having a firm grasp of React’s concepts will lead straight back to overwhelmsville. But this step isn’t very well-defined: what should you build? A prototype for work? Maybe a fancy
+Facebook clone, something substantial that uses the whole stack? Well, no, not those things. They’re either loaded with baggage or too large for a learning project. You want to build small things.
+--> Don't Build a Prototype
+"Prototypes" (for work) are usually terrible leraning projects, because you know in your heart that a "prototype" will never die. It will live long beyond the prototype phase, morph into shipping software, and never be thrown away or rewritten. As soon as some manager sees that it works, features will be piled on. "We'll refactor it some day" will turn out to be a lie. The code will grow bloated and disorganized. All of these, and more, are reasons why a prototype is a bad choice as a lerning project. When you know it won't be throwaway code, the future looms large. You start to worry.. Shouldn't it have tests? Shouldn't I make sure the architecture will scale? Am I going to have to refactor this mess later? And shouldn't it have tests? Worrying about architecture and scalability and “the future” is a bad strategy for learning the basics of a new technology. 
+On the flip side, if you buld a proptotype believing that it is throwaway code, it probably won't be very good code. Then when your boss' boss sees how awesome the prototype looks, they will absolutelty not allow you to rewrite it with all the best practices you've learned. And that's a recipe for an unmainatainable code base.
+--> So What Should You Build?
+This book exists to answer this question, and help you through it. The short answer is this: [Build small, throwaway apps]
+The sweet spot is somewhere between "Hello World" and "entire clone of Twitter". We'll start off with Hello World, of course. No self-respecting programming book would be complete without that.
+As your skills grow, low-fidelity copies of simple apps and sites like Reddit, Hacker News, and Slack make great projects. Designers call this "copywork", and it's great because it frees you from having to make product decisions like "what page the user should see after they log in" or "what color should be buttons be". You can simply focus on learning React. By the end of this book you’ll be building replicas of those popular apps and more. They’ll come together quickly once you can clearly “think in components,” a skill you’ll develop as you progress through the book.
+--> Learning With Small Projects
+I believe that you can get more learning value out of small projects than large or full-stack ones, at least in the beginning. Here’s an idea of what I mean. The colored bars are periods of maximum learning, and the gaps are where you’re doing things you already know how to do:
+[BIG 	= |______-__-_---_-_-__------_--__-_|]
+[SMALL	= |__-__-__--__-__-_-___-__-__--__-_|]
+At some point, the larger projects have diminishing returns. The first few times you use a text input and have to wire it up to maintain its state, you’re learning. By the tenth time, it’s old hat. That isn’t to say that large projects aren’t valuable, but I don’t believe they’re good first projects. Start small, build a few small things, then build a bigger thing or two.
+This is the idea behind deliberate practice- the activity should be just beyond your current skill level. Not so hard that you get frustated and quit, but not so esy that you can breeze right through, either. The exercises in this book are designed that idea, to push you a little outside your comfort zone and make you think.
+-----------
+#Environment Setup
+Before we dive in, we’ll need to set up an environment. Don’t worry, there’s no boilerplate to clone from GitHub. No Webpack config, either. Instead, we’re using Create React App, a tool Facebook made. It provides a starter project and built-in build tools so you can skip to the fun part – creating your app!. 
+--> Prerequisites
+>Tools
+• Node.js (at least 8.10.0)
+• NPM (ideally version >= 5.2)
+• Google Chrome, Firefox, or some other modern browser
+• React Developer Tools
+• Your text editor or IDE of choice
+You can use nvm to install Node and NPM on macOS & Linux, or nvm-windows on Windows. You can also download an installer from nodejs.org, but the advantage of nvm is that it makes it very easy to upgrade your version of Node in the future. Any modern browser should suffice. This book was developed against Chrome, but if you prefer another browser, it will probably work fine.
+>Create React App
+Throughout this book, you’ll be creating a lot of little projects with Create React App. Because the create-react-app command very rarely needs to be updated, I suggest installing the tool permanently, by running:
+[ npm install -g create-react-app ]
+If you don’t want to install an extra tool, you can use the npx command to create your projects, as in npm create-react-app my-project-name. The upside of that is that you don’t need to install a tool. The downside is that every command will take extra time because it needs to install Create React App from scratch every time. Even without ever updating the global create-react-app command, it is designed to always pull down the latest version of React when it creates a new project. You don’t need to worry about it becoming outdated.
+>Yarn
+Yarn is an alternative package manager for JavaScript, released in June of 2016. It has all the same packages and it’s often faster than NPM. Througout the book I’ll show the npm commands for installing packages, but feel free to use Yarn if you like.
+>React Developer Tools
+The React Developer Tools can be installed from here:
+https://github.com/facebook/react-devtools
+Follow the instructions to install the tools for your browser. The React dev tools allow you to inspec the React component tree (as opposed to the regular DOM elements tree) and view the props and state assigned to each component. Being able to see how React is rendering your app is extremely useful for debugging.
+>Knowledge
+You should already know Javascript (at leas ES5), HTML and CSS. I'll explain the newer Javascript features as they come up (you don't need to alread know ES6 and beyond). If you aren’t very comfortable with CSS, don’t worry too much – you can use the code provided in the book. A few exercises might be challenging without knowledge of CSS but you can feel free to skip those or modify the designs into something you can implement. I don’t recommend learning JavaScript and React at the same time. When everything looks new, it can be hard to tell where “JavaScript” ends and “React” begins. If you need to brush up on JS, here are some good (and free!) resources:
+• Speaking JavaScript (book): http://speakingjs.com/
+• Exercism (exercises): http://exercism.io/languages/javascript
+• You Don’t Know JS (book series): https://github.com/getify/You-Dont-Know-JS
+A passing familiarity with the command line will be helpful as well. We’ll mostly just be using it to install packages. 
+>Project Directory
+You’ll be writing a lot of code throughout this book. To keep it organized, create a directory for the exercises. Name it pure-react, or whatever you like. That’s it! Let’s get to coding
+---------------
+#Debugging Crash Course
+When things go wrong, here are the steps to follow:
+>> Don't panic
+>> Manualy refresh the page. Sometimes the auto-refreshing mechanism breaks
+>> Check the browser console, manually refresh the page, and fix erros you see. Don't ignore errors and warnings! Kepp the console tidy. IF you let problems pile-up, non-urgent ones might end up obscuring the one that broke the app. Always scroll to the top and start with the first error, don't start with the most recent one.
+>> Check the command line terminal where you ran npm star. Look for any errors, and fix those.
+To open the browser console in Chrome on Mac, press Option+Command+I. In Chrome on Windows or Linux, press Ctrl+Shift+I. Then make sure you are on the “Console” tab. If you don’t know how to open your browser’s Developer Tools, Google for “open browser console [your_browser]”
+Likewise, if you have no idea what an error means, copy and paste it into Google.
+Still completely stuck? Stack Overflow has an abundance of React-related questions and answers, and the Reactiflux community at https://www.reactiflux.com/ is full of friendly people who can help.
+There is also a #react IRC channel on Freenode, which you connect to with an IRC client or visit http://irc.lc/freenode/reac
+>> Keep the Console Open!
+The browser console is an amazingly tool for debugging, and it's a great idea to leave it open while you work through the examples and exercises. It'll help you catch typos and save you a lot of time hunting down problems. Create React App does a good job of cathcing errors and displaying them full-screen, showing the snippet of code where things went wrong. Sometimes, though, and error will result in a completely blank screen. In those cases, always check the console first.
+>> React Dev TOols
+Once you have installed the React dev tools, you’ll see a “React” tab in the browser devtools, like this:
+[GAMBAR - React Dev Tools]
+Choose the React Tab, and look for your component in the tree. You can use the search box to find it without having to drill down. When you click on a component, its Props and State will appear in the side pane. Make sure the values agree with what you expect to see. You can even modify the Props and State right in the side pane, and see the component re-render with your changes.
+
+==============================================================
+2. HELLOW WORLD
+At this point you have node and npm installed. All of the tools are ready. Let’s write some code!
+Step 1
+Use create-react-app (“CRA”) to generate a new project. CRA will create a directory and install all the necessary packages, and then we’ll move into that new directory.
+[ create-react-app react-hello
+$ cd react-hello ]
+The generated project comes with a prebuilt demo app. We’re going to delete that and start fresh. Delete the files under the src directory, and create an empty new index.js file.
+[ rm src/*
+$ touch src/index.js ]
+Step 2
+Open up the brand new src/index.js file, and type this code in:
+{The type out by hand? Like savage? Typing it drills it into your brain much better than simply copying and pasting it. You're forming new neuron pathways. Those pathways are going to understand React on day. Help 'em out}
+[Index.js
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+function helloWorld(){
+  return(
+    <div>Hello world</div>
+  )
+}
+
+ReactDOM.render(<HelloWorld/>, document.querySelecor('#root'))]
+The import statements at the top are an ES6y feature. These lines will be at the top of everyh index.js file that we see in this book. Unlike with ES5, we can't simply include <script> tag and get React as global object. So, the statement [ import React fom 'react' ] creates a new variable called React with the contents of the react module. The strings 'react' and 'react-dom' are important: they corresponse to the names of modules installed by npm. If you're familiar with Node.js, [ import React from 'react' ] is equivalent to [ const react  = requirre('react') ].
+Step 3
+From inside the react-hello directory, start the app by running this command: [ npm start ]
+>How the Code works
+Let's start at the bottom, with the call ReactDOM.render. That's what actually makes this work. This bit of code is regular JavaScript, despite the HTML-looking <HelloWorld/> thins there. Try commenting out that line and watch how Hello World dissapears. React uses the concept of Virtual DOM. It creates a representation of your component hieararchy and then renders those components by creating real DOM elements and inserting them where you tell it. In this case, that's inside the element with and id of root. ReactDOM.render takes 2 arguments: what you want to render (your component, or any other React Element) and where youj want ot render it into (a real DOM element that already exists)
+[ ReactDOM.render([ReactElement], [DOM elmement]) ]
+Above that, we have a component named HelloWorld. The primary wayh of writing React compoentsn is as plain functions like this. Most people call them "function compoennts", but you mgith also see them called "functional components" or "stateless function compoenents" (SCF for short)
+There are 2 other ways to create component: ES6 classes, and not-deprecated React.createClass. You may still see the createClass style in old projects or Stackoverflow answers, but it's not in common use anymore. Primarily we'll be writing component as functions. The HTML-like syntax inside the render function is called JSX, and we’ll cover that next.
+
+=================================================
+3. JSW: WHAT AND WHY
+One of the first things you probably noticed about React code is that it looks like the component function is returning HTML. This HTML-like syntax is actually called JSX.
+------------
+#What is JSX?
+JSX is a syntax invented for React that looks very similar to (X)HTML. It allows you to create elements by writing in a familiar-looking syntax, instead of writing out functions calls by hand. The HTML-like syntax actually compiles down to real JavaScript. Did you notice how there are no quotes around the "HTML"? That because it's not a string. The lack of quotes is not just a trick, either. React is not parsing the tags and converting them into HTML. I know, I know, it looks like HTML. In reality though, JSX is just a nice syntax for function calls that create DOM elements. 
+So what is React actually doing here? How does this work?
+>>JSX Is Compiler to JavaScript
+The JSX elements you write are actually compiler down to JS by tool called Babel. Babel is a compiler that transforms into valid ES5 JS that all browsers can undertand, and it's bundled in with projects createa by CRA. After you run npm start, a tool called Webpack is watching for file sto change. When they do, it feeds those files intl Babel, which turns JSX into JS, and sends it to your browser via the development server running on port 3000. Each JSX Element becomes a function call, where its arguments are its attributes ("props") and its contents ("children"). Here's an example of a simple React component the return some JSX:
+[ function Hello(){
+    return <span>Hello</span>
+} ]
+And here is the Jvascript generated by the Babel compiler:
+[function Hello(){
+  return React.createElement(
+    'span',
+    { },
+    'Hello',
+  )
+}]
+The React.createElement function signature looks like this:|
+[ React.createElement(
+    string|element,
+    [propsObject],
+    [children...]
+) ]
+The string element can be string describing an HTML or SVG tag (like 'div' or 'span'), or it can be a component a.k.a function (like HelloWorld, with no quotes). The propsObject and children are optional, and you can also supply more than one child by passing additional arguments.
+[function HelloWorld(){
+  return React.createElement(
+    'div',
+    {},
+    'Hello',
+    'World'
+  )
+}]
+You can also nest the calls:
+function ManyChildren(){
+  return React.createElement('div', {},
+    React.createElement('div', {}, 'Child1'),
+    React.createElement('div', {}, 'Child2', 
+      React.createElement('div', {}, 'Child2_child')
+    )
+  )
+}
+Try it yourself Rewrite the HelloWorld component to call React.createElement instead of returnig JSX. [CHALLENGES 1 DONEEEEEEE]
+[function HelloWorld(){
+  return React.createElement(
+    'h1', {}, 'Hello World'
+  )
+}]
+>>
+Here is a slightly more complicated bit of JSX, and a preview of what's to come. You can see that it references a function parameter named props. We haven't talked about props yet, but this is the wayh you pass arguments to React components.
+[function SongName(props){
+  return(
+    <span className='song-name'>
+      {props.song.name}
+    </span>
+  )
+}]
+And here is what it compiles to:
+[function SongName(props){
+  return(
+    React.createElement('span', 
+      {className: 'song-name},
+      props.song.name
+    )
+  )
+}]
+See how JSX is essentially a nice shorthand writing funcionts calls? You don't event have to use JSX if you don't want to- you can write out these function calls manually. Your first instinct might be to avoid JSX because you don't like look of 'HTML in JS'. Maybe you'd rather write real JavaScript function calls, because it feels more "pure" somehow. I suggest giving JSX an honest try before you give up on it. Writing out the React.createElement calls is not a common approach in the React community. Essentially all React developers use JSX, which means code that you see in the wild (on Github, Stack Overflow, etc) is likely to be written with it.
+But… Separation of Concerns!
+If you've internalized the idea that mixing JS with HTML, is just wrong, and that each language should be kept in its own file, you're not alone. Before I got into using React, I had the same apprehensions. It took some time (and writing a few small apps) before I began to understand the power of JSX. Don't worry though, because the exercises in this book will give you all the practice you need to come to grips with it. I believe the disdain for mixing HTML with JS has a bit of cargo-cult “tradition” behind it. It’s a piece of lore passed down through the generations about the Right Way to build web apps. You might fear that mixing HTML with JS will turn the codebase into a tangled mess of conditional logic with duplicated HTML everywhere, like badly-written PHP. If you have flashbacks to PHP or JSPs where SQL statements were mixed in with view code, and you never want to go back to that world, I don’t blame you. React’s pattern of building with components helps prevent this.
+>Unseparated Concerns
+When you step back and think about it, there are some good reasons to combine the logic and the view together. If you’ve ever used something like Angular 1.x, you’ve probably written the logic in one file and the
+HTML in a separate template file. Tell me, how often have you opened up the template to tweak something without having to look at (or change!) the associated JS code? How often have you changed the JS without having to touch the template?
+In most code I've worked with, it's rare that I could add new functionality without changing both the template and its controller. Add a function in one file, call it from the other. Need to pass an extra argument? Gotta change it in two files.
+If they were truly separated concerns, this would not be necessary. We like to think that splitting the JS and the HTML into separate files magically transforms them into "separated concerns". Reusability here we come!!
+Except it rarely works that way. The JS code and its related template are usually pretti tightly coupled, and naturally so- they're two sides of the same coin. Splitting code into separate files does not automatically lead to separation of concerns. The story is similar with good old jQuery. The HTML is blissfully unaware that JavaScript even exists, and yet the JS and HTML are tightly coupled by the fact that the jQuery selectors must know something about the page structure. If the structure changes, the code must change. If you haven’t noticed, I’m trying to make the case that the template and the view logic could actually coexist in the same file and it might actually make more sense to do it that way.
+You don't have to believe me righ not. Just keep the idea in the back of your mind as you work through the examples and exercises. You may find (as I did) that merging the logic and view makes your code easier to navigate, easier to write, and easier to debug. You’ll spend less time hopping between files when all the related functionality is in one place.
+
+========================================================
+4. WORKING WITH JSX
+>Composing Components
+JSX, like HTML, allows you to nets elemens inside of one another. This is probably not a big surprise. Let’s refactor the HelloWorld component from earlier to demonstrate how composition works. Here’s the original HelloWorld:
+[function HelloWorld(){
+  return(
+    <div>Hello world</div>
+  )
+}]
+Leaving the HelloWorld component intact for now, create two new components: one named Hello and one named World. Hello should render <span>Hello</span> and World should render <span>World</span>. You can basically copy-and-paste the HelloWorld component and just change the text and the function name.
+Got it?
+It's important to actually type this stuff out and try it yourself. Don't just read whil nodding along, because you won’t actually learn it that way. It’s very easy to look at code and think, “Yep, that all makes sense.” You’ll never know if you truly understand until you try it. Your two new components should look like this:
+[function Hello(){
+  return(
+    <span>Hello</span>
+  )
+}
+
+function World(){
+  return <span>World</span>
+}]
+Now, change the HelloWorld component to use the two new components you just created. It should look something like this:
+[import React from 'react'
+import Hello from '../Hello'
+import Hello from '../World'
+
+function HelloWorld(){
+  return(
+    <div>
+	<Hello /> <World>
+    </div>
+  )
+}]
+Assuming the app is still running, the page should automatically refresh. If not, make sure the app is running (run npm start if it’s not). You should see the same “Hello World!” as before. Congrats! I know this seems painfully simple, but there are some lessons here, I promise.
+The next few examples depend upon the Hello and World components that you should have created above, so make sure those exist before you continue.
+----------------------
+#Wrap JSX with Parantheses
+A quick not on formatting: you might notice I wrapped the returned JSX inside parantheses(). GThis isn't strictly necessary, but if you leave off the parents, the opening tag must be on the same line as the return, which looks a bit awkward. Just for kicks, try moving the <div> onto its own line, without the surrounding parens:
+[function HelloWorld(){
+  return 
+  <div>
+    <Hello/> <World>!
+  </div>
+}]
+This will fail with an error. If you look in the browser console, you'll also likely see a waring about "Nothing was returned from render". This is because JavaScript assumes you wanted a semicolon after that return (because of the newline), effectively turning it into this, which returns undefined.
+[function HelloWorld() {
+  return;
+    <div>
+      <Hello/> <World/>!
+    </div>;
+  }
+]
+So: feel free to format your JSX however you like, but if it’s on multiple lines, I recommend wrapping it in parentheses.
+>Return a Single Element
+Notice how the two components are wrapped in a <div> in the HelloWorld example:
+[function HelloWorld() {
+  return (
+    <div>
+      <Hello/> <World/>!
+    </div>;
+    )
+  }]
+Here’s a little exercise: try removing the <div> wrapper and see what happens. You should get this error:
+{!!  Adjacent JSX elements musjt be wrapped in an enclosing tag }
+If this seems surprising remember that JSX is compiled to SJX before it runs:
+[this is JSX:
+function Hello(){
+  return (<Hello/> <World>)
+}
+
+//becomes this JS:
+function HelloWorld(){
+  return(
+    React.createElement(Hello, null) React.createElement(World, null)
+  )
+}]
+Returning two things at once is pretty obviously not gonna work. So that leads to this very important rule:
+{!! A component function must return a single element }
+But wait! Could you return an array? It’s just JavaScript after all…
+[// This JSX:
+function HelloWorld() {  
+  return [<Hello/>, <World/>];
+}
+
+// Would turn into this JS
+// (notice the brackets).
+function HelloWorld() {
+  return [
+    React.createElement(Hello, null),
+    React.createElement(World, null)
+  ];
+}]
+Try it out! It renders correctly. But if you open up the browser console, you’ll see a warning:
+{!! Each child in an array or iterator should have a unique "key" prop }
+As the warning suggest, React requires a unique key props for each JSX element in an array. We'll learn more about the key prop later on, but the meantime, there are two ways to solve this problem: either wrap the elements in a single enclosing tag, or wrap them in a fragment.
+>Wrap With a Tag
+The most obvious wayh to return multiple elements is to wrap them in and enclosing tag, like a <div> or <span>. However, it has the side effect of influencing the DOM structure.
+For example, this React component…
+[function HelloWorld() {
+  return (
+    <div>
+      <Hello/> <World/>!
+    </div>
+  );
+}]
+...will render a DOM structure like this"
+[ <div>
+    <span>Hello</span>
+    <span>World</span>
+  </djv> ]
+A lot of the time, this is perfectly fine. But sometimes, you won’t want to have a wrapper element, like if you have a component that returns two table cells:
+[function NameCells(){
+  return(
+    <td>First Name</td>
+    <td>Last Name</td>
+  )
+}]
+You can't wrap these elements in a <div>, because the <td> table cells need to be direct descendants of a <tr> table row. How you can combine them?
+----------------------
+# Fragments
+React’s answer is the fragment. This component was added in React 16.2, and can be used like this:
+[function NameCells(){
+  return(
+    <React.Fragment>
+      <td>fName</td>
+      <td>lName</td>
+    </React.Fragment>
+  )
+}]
+
+After rendering, the React.Fragment component will "dissapear", leaving only the children inside it, so that the DOM structure will hvae no wrapper components. Fragments make it easier to produce valid HTML (such as keeping <td> elements directly inside <tr>s), and they keep the DOM structure flatter which makes it easier to write semantic HTML (which is also usually more accessible HTML).
+--------------
+#Fragment Syntax
+If you think React.Fragment looks clunky, I don’t blame you. JSX supports a special syntax that looks like an “empty tag” and is much nicer to write:
+[function NameCells(){
+  return(
+    <>
+      <td>fName</td>
+      <td>lName</td>
+    </>
+  )
+}]
+This <></> syntax is the preferred way to write fragments, and this feature will be available as long as you’re working in a new-enough project (Babel 7+, Create React App 2+).
+----------------------
+#JavaScript in JSX
+You can insert real JavaScript expressions inside JSX code, and in fact, you'll do this quite often. Surround JS with single braces like this:
+[function SubmitButton(){
+  const buttonLabel = "Submit"
+  return(
+    <button>{buttonLabel}</button>
+  )
+}]
+Remember that this will be compiled to JS, whichmeans that the JS inside the braces must be an expression. An expression produces a value. These are expressions:
+[1+2
+buttonLabel
+aFunctionCall()
+aFunctionName]
+Each of these results in a single value. In contrast, statements do not produce values and can’t be used inside JSX. Here are some examples of statements:
+[const a = 5
+if(true){17;}
+while(i<7){i++}]
+None of these things produces a value. const a = 5 declares a variable with the value 5, but it does not return that value. Another wayt o think of statement vs expression is that expressions can be on the right hand of an assignment, but statements cannot.
+[//These aren't valid JS:
+a = let b = 5;
+a = if(true){17;}]
+You can also ask yourself, “Could I return this value from a function?” If the answer is yes, that’s an expression and you can write it inside JSX within {single braces}.
+----------------
+#"If" in JSX
+The next question you might wonder is, “How do I write a conditional if I can’t use ‘if’?” There are a couple of options. The first is the ternary operator (the question mark, ?). use it like this:
+[function ValidIndicator(){
+  const isValid = true
+  return(
+    <span>{isValid ? 'valid' : 'not valid'}<span>
+  )
+}]
+You can also use boolean operators such as && like this:
+[function ValidIndicator(){
+  const isValid = true
+  return(
+    <span>
+      {isValid && 'valid'}
+      {!isValid && 'not valid'}
+    </span>
+  )
+}]
+-----------------------
+#Comments in JSX
+If you need to put a comment into a block of JSX, the syntax is a little awkward. Remember that any JavaScript code needs to be inside single braces, and think of the comments as JavaScript. To comment chunks of JSX, put the comments inside a JavaScript block like this:
+[function ValidIndicator() {
+  const isValid = true;
+  return (
+    <span>
+    {/* here is a comment */}
+      {isValid && 'valid'}
+      {!isValid && 'not valid'}
+    {
+      // Double-slash comments are
+      // OK in multi-line blocks.
+    }
+    {/*
+      <span>thing one</span>
+      <span>thing two</span>
+    */}
+    </span>
+  );
+}]
+-------------------
+#Capitalized Component Names
+The component you write must begin with an uppercase letter. This means using names like UserList and Menu and SubmitButton, and not names like userList, menu, and submit_button. In JSX, a component that atrats with a lowercase letter is assumed to be a built-in HTML or SVG element (div, ul, rect, etc)
+A bit of history: early versions of React kept a “whitelist” of all the built-in element names so it could tell them apart from custom ones, but maintaining that whitelist was time-consuming and errorprone. If a new SVG element made its way into the spec, you couldn’t use it until React updated
+that list! So they killed off the list, and added this rule.
+-------------------
+#Close Every Element
+JSX  requires that every element be closed, similar to XML or XHTML. This includes the ones you might be used to leaving open in HTML5, like <br> or <input> or maybe even <li>.
+[//Do THIS:
+return <br />;
+return <input type='password' ... />;
+return <li>text</li>;
+
+//NOT THIS:
+return <br>;
+return <input type='password' ...>;
+return <li>text;
+]
+----------------
+#Exercises
+Create a new app for these exercises by running:
+[ create-react-app jsx-exercises ]
+Open the src/index.js file and replace the contents, similar to Hello World. Fill in the rest.
+[import React from 'react'
+import ReactDOM from 'react-dom'
+
+function MyThing(){
+  //...
+}
+
+ReactDOM.render(
+<MyThing/>,
+document.querySelector('#root')
+);]
+You can delete or ignore the src/App* files and the logo. If you don’t explicitly import them, they won’t get bundled into your app. 
+#1. Create a component that renders this JSX:
+[<div className='book'>
+  <div className='title'>
+    The Title
+  </div>
+  <div className='author'>
+    The Author
+  </div>
+  <ul className='stats'>
+    <li className='rating'>
+      5 stars
+    </li>
+    <li className='isbn'>
+      12-345678-910
+    </li>
+  </ul>
+</div>
+]
+-
+#2. See how JSX interprets whitespace. Try rendering these arrangements and take note of the output (hint: leading and trailing spaces are removed, and so are newlines):
+a. Single LInes
+[<div>
+Newline
+Test
+</div>]
+b. Empty newlines
+[<div>
+Empty
+
+Newlines
+
+Here
+</div>]
+c. space with newlines
+<div>
+&nbsp;Non-breaking
+&nbsp;Spaces&nbsp;
+</div>
+d. Inserting spaces when content spans multiple lines
+<div>
+Line1
+{' '}
+Line2
+</div>
+-
+#3. Make a copy of the component from Exercise 1, and replace the JSX with calls to React.createElement. The output should be identical.
+=> 
+[function Exercise3(){
+    return React.createElement('div', {className:'book'}, 
+        React.createElement('div', {className:'title'}, ' The Title'), 
+        React.createElement('div', {className:'author'}, 'The Author'),
+        React.createElement('ul', {className:"stats"}, 
+            React.createElement('li', {className:"rating"}, '5 Stars'),
+            React.createElement('li', {className:"isbn"}, '12-345678-910')
+        )
+    )
+}]
+-
+#4. Return  the appropriate JSX from this component so that when username is undefined or null, it renders “Not logged in”. When username is a string, render “Hello, username”.
+[function Greeting() {
+  // Try all of these variations:
+   //let username = "root";
+   //let username = undefined;
+   //let username = null;
+   //let username = false;
+   // Fill in the rest:
+   // return (...)
+});
+]
+-
+#5. One good way to learn a new syntax is to try breaking it- discover its boundaries. Try some of the things this chapter warned about and see what kind of errors you get. At the very least, it'll familiarize you with what the errors mean if you make one of these mistakes later on.
+--> Name a component starting with a lowercase letter, like "testComponent"
+--> Try returning 2 elements at once
+--> Tryh returning an array with 2 elements inside
+--> Can you put 2 expressions inside single braces, like {x && 5; x && 7}
+--> What happens if you use return inside a JS expression?
+--> What about a function call like('hi')? Does it halt rendering?
+--> Try putting a quoted string inside JSX. DOes it strip out the quotes?
+-
+#6. The HTML spec says that tables must be structured with a table element surrounding at tbody, which surrounds multiple trs(the rows), which each surround multiple td(the columns). Create a component claled Table that renders a table with 1 row and 3 columns and any data you like. Open the browser console and make sure there are no warnings. Then, create a component called Data that renders the 3 columns, and replace the 3 <td>s with the <Data/> component
+[BELUM DICOBA DI VSCODE]
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+
+
+5. EXAMPLE: TWEET COMPONENT
+To learn to "think in components" you'll need to build a few, and we're going to start with a nice simple one. We'll follow 4-step process:
+One: Make Sketch of the end result
+Two: Carve up the sketch into components
+Thr: Give the components names
+Fou: Write the code
+--------------
+Step1: Sketch
+Spending a few seconds putting pen (or pencil) to paper can save you time later. Even if you can't draw (it doesn't need to be pretty). We'll start with a humble sketch because it's concrete and gives us something to aim for. In a larger project, this might comes from a designer (as wireframes or mockups) but here, I recommend sketching it out yourself before writing any code. Event you can already visualize the end result, epsnd the 30o seconds and sketch it out on real dead-tree paper. It will help tremendously, especiallyh for the complicated components. There's something satisfying about building a component from a drawing: you can tell when you're "done". Without a concreate picture of the end result, you'll compare the on-screen components to the grand vision in your head, and it will never be good enough. It's easy to waste a lot of time when you don't know what "done" looks like. A Sketch you target to aim for. Here is the skecth
+[GAMBAR]
+It’s rough on purpose: you don’t need a beautiful mockup. A simple pen-and-paper sketch works fine.
+------------
+Step2: Carve into Components
+The next step is to break this sketch into components. To do this, draw boxes around the "parts", and think about reusability. Imagine if you wanted to display 3 tweets, each with a different message and user. What would change, and what would stay the same? The part change would make good components. Another strategy is to make every "thing" a component. Things like buttons, chunks of releated text, images, and so on. Try it yourself, then compare with this.
+[GAMBAR]
+--------------
+Step3. Name the Components
+Now that we've broken the sketch into pieces, we can give them names.
+[GAMBAR]
+Each of these named items will become a component, with Tweet being the "parent" that groups them all together. The hierarchy looks like this:
+-> Tweet: (Avatar, Author, Time, Message, ReplyBUtton, LikeBUtton, RetweetButton, MoreOptionsButton)
+---------------
+Step4. Build
+Now that we know what the component treek looks like, let's get to building it! There are two ways to approach this.
+->#Top-down,, or Bottom-up?
+Option 1: Start at the top. Build the Tweet component first, then build its children. Build Avatar, then Author, and so on.
+Option 2: Start at the bottom (the "leaves" of the tree). Build Avatar, then Author, then the rest of the child components. Verify that they work in isolation. Once they're all done, assemble them into the Tweet component. So what's the best way? Well, it depends (doesn't it always?)
+For a simple hierarchy like this one, it doesn't matter much. It's easiest to start at the top, so that's what we'll do here. For a more complex hierearchy, start at the bottom. Build small pieces, teste that they work in isolation, and combine them as you go. This way you can be confident that the small pieces work, and, by induction, the combination of them should also work (in theory, anyway)
+Writing a small components in isolation makes them easier to unit test, too. Though we won't cover unit testing in this book (learning how to use React is hards enough byh itself), when you're ready, look into Jest and Enxyme for testing your components. You'll likely combine the top-down and bottmo-up approaches as you build larger apps.
+For example, if were building the whole Twitter site, we might build the Tweet component top-down, then incorporate it into a list of tweets, then embed that list in a page, then embed that page into the larger application. The Tweet could be built top-down while the larger application is built bottom-up.
+->#Rewrigin an Existing App
+Another situation where building from the bottom is preferable isk when you are converting an app to React. If you have an existing app written in another framework like Angular or Backbone and you want to rewrite it in React, starting at the top makes little sense, because it'll have a ripple effect across your entire code base. Starting at the bottom is manageable and controlled. You can build the "leaf nodes" of your app- the small, isolated pieces. Get those working, then build the next level up, and so on, until ou react the top. At that point you have the option to replace your current framework with React if you choose to. The other advanteage of bottom-up development in a rewrite is that it fits nicely with React's one-way data flow paradigm. Since the React components occupy the bottom of the tree, and you're guaranteed that React components only contain other React components, it's easier to reason about how to pass your data to the components that need it.
+->#Build the Tweet Component
+Here’s our blueprint again:
+[GAMBAR]
+We'll building a plain static tweet in this section, starting with the top-level component, Tweet. Create a new project with Create React App by running this command:
+[  create-react-app static-tweet && cd static-tweet ]
+Similar to before, we'll delete some of the generated files and create our own empty index.js. Since we'll need some tyle too, we'll also create an empty index.css.
+[ $ rm src/*
+$ touch src/index.js src/index.css ]
+The newly-generated project comes with an index.html file in the public directory. Add Font awesome by puttin this line inside the <head> tag (put it all on one line):
+[<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/
+font-awesome/4.6.3/css/font-awesome.min.css">]
+The open up our blank src/index.css file and replace its content with this:
+[.tweet{
+border: 1px solid #ccc;
+width: 564px;
+min-height: 68px;
+padding: 10px;
+display: flex;
+font-family: "Helvetica", arial, sans-serif;
+font-size: 14px;
+line-height: 18px;
+}]
+The index.js file will be very similar to the one from Hello World. It's basically the same thing, with "Tweet" instead of "Hello World". We'll make it better soon, I promise. Replace the contents of src/index.js with this (don't forget to type it out! Repetition is your frient, here):
+[import React from "react"
+import ReactDOM from 'react-dom'
+import './index.css'
+
+function Tweet(){
+  return(
+    <div className="tweet">
+      Tweet
+    </div>
+  )
+}
+
+ReactDOM.render(<Tweet/>, document.querySelector('#root'))]
+That should do it. Start up the server, same as before, by opening up a command line terminal and running.
+[ npm start ]
+And the page should render something like this:
+[GAMBAR]
+This is nothing you haven't seen before. It's simple component, with the addition of a special className attribute (which React calls a "prop", short for property). We'll learn more about props in the next section, but for now, just think of them like HTML attributes. Most of them are named identically to the attributes you already know, but className is special in that its value becomes the class attribute o the DOM node. One other new thing you might've noticed is the import './index.css' which is importing.. a CSS file into a JavaScript file? Weird?.
+What's happening is that behind the scenes, when Webpack build our app, it sees this CSS import and learns that index.js depends on index.css. Wepack reads the CSS file and includes it in the bundled JavaScript (as a string) to be send to the browse.
+You can actually see this, too- open the browser console, look at the Elements tabs, and notice under <head> there's a <style> tag that we didn't put there. It contains the contents of index.css. Back to our outline. Let's build the Avatar component.
+Later on we'll look at extracting components into files and importing them via import, but to keep things simple for now, we'll just put all the components in index.js. Add the Avatar component to index.js
+[function Avatar() {
+  return (
+    <img
+      src="https://www.gravatar.com/avatar/nothing"
+      className="avatar"
+      alt="avatar" />
+    );
+}]
+If you want to use your own Gravatar, go to daveceddia.com/gravatar to figure out its URL. Next we need to include Avatar in the Tweet component:
+[function Tweet() {
+  return (
+    <div className="tweet">
+      <Avatar/>
+      Tweet
+    </div>
+   );
+}]
+Now just give Avatar some style, in index.css:
+[.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+  margin-right: 10px;
+}]
+It’s getting better:
+[GAMBAR]
+Next we'll create two more components, the Message and Author:
+[function Message()P{
+  return(
+    <div className="message"> 
+      This is less than 140 characters
+    </div>
+  )
+}
+
+function Author(){
+  return(
+    <span className="author">
+      <span className="name">Your Name</span>
+      <span className="handle">@yourhandle</span>
+    </span>
+  )
+}]
+if You refresh after adding these, nothing will have changed because we still need to update Tweet to use these new Components, so do that next:
+[function Tweet() {
+  return (
+    <div className="tweet">
+      <Avatar/>
+      <div className="content">
+        <Author/>
+        <Message/>
+      </div>
+    </div>
+  );
+}]
+It’s rendering now, but it’s ugly. Spruce it up with some CSS for the name and handle:
+[.name{
+font-weight: bold;
+margin-bottom: 0.5em;
+margin-right: 0.3em;
+}
+
+.handle{
+color: #8899a6;
+font-size: 13px;
+}]
+[GAMBAR]
+It's looking more like a real tweet now!
+Next up, add the Time and the buttons(we'll talk about the newx syntax in a  second- just type these in as shown)
+[const Time = () => (
+  <span className="time">3h ago</span>
+)
+
+const ReplyButton = () => (
+  <i className="fa fa-reply reply-button"/>
+)
+
+const RetweetButton = () => (
+  <i className="fa fa-retweet retweet-button"/>
+)
+
+const LikeButton = () => (
+  <i className="fa fa-heart like-button"/>
+)
+
+const MoreOptionsButton = () => (
+  <i className="fa fa-ellipsis-h more-options-button"/>
+)]
+These components don't look like the funcitons yo've been writing up to this point, but they are in fact still functions. They're arrow functions. Here's progression from a regular funcition to an arrow function os you can see what's happening.
+Arrow functions are a nice concies way of writing components. Notice how there's no return in the last couple versions: when an arrow function only contain one expression, it can be written without braces. And when it's written without braces, the single expression is implicitly returned. We'll continue to use arrow functions throughout the book, so you'll get lots of practice. Don't worry if they look foreign now. Your eyes will adapt writing them a few times. You'll get used to them, I promise. 
+Also: arrow function's don't "replace" regular functions, and aren't strictly "better than" functions. They're just different. For function components, they're effectively interchageable. Personally, I tend to write function when the component is a bit larger, and use a const () => (...) when it's only a couple lines. Some people prefer to write arrow functions everywhere. Use what you like.
+->#The let and cosnt keywords
+If you're familiar with languages like C or Java, you're familiar with block scoping. As you may know, JavaScript's var is actually function-scoped, not block-scoped. This has long been an annoyance (especially in for loops). But no more!. ES6 added let an cosnt as two new ways of declaring block-scoped variables. 
+The let keyword defines a mutable (changeable) variable. You can use it instead of var almost everywhere. The const defines constant. It will throw an error if yo try to reassign the variable, but it's worth nothing that it does not prevent you from modifying then data wihtin that variable. Here's an example:
+[cosnt answer = 42;
+answer= 43 //error!
+
+const numbers =[1,2,3]
+numbers[0] = 'this is fine' //no error]
+Using const is more of a signal intent than a bulletproof protection scheme, but it is still worthwhile. 
+->#Add the Buttons and the Time
+Now that we've got all those new components, update Tweet again to incorporate them:
+[
+function Tweet(){
+  return(
+    <div className="tweet">
+      <Avatar />
+      <div className="content">
+	<Author/><Time/>
+	<Message />
+	<div className="buttons">
+	  <ReplyButton/>
+	  <RetweetButton/>
+	  <LikeButton/>
+	  <MoreOptionsButton/>
+	</div>	
+      </div>
+    </div>
+  )
+}]
+Finally, add a few more styles to cover the time and buttons:
+[.time {
+padding-left: 0.3em;
+color: #8899a6;
+}
+.time::before {
+content: "\00b7";
+padding-right: 0.3em;
+}
+.buttons {
+margin-top: 10px;
+margin-left: 2px;
+font-size: 1.4em;
+color: #aab8c2;
+}
+.buttons i {
+width: 80px;
+}]
+And here we have a fairly respectable-looking tweet
+[GAMBAR:]
+You can customize it to your hear's content: change the name, the handle, the message, even the Gravatar icon. Pretty sweet right? "But..wait", I hear yo saying. "I thought we were going to build reusable components" This tweet is pretty and all, but it's only good for showing one essage from one person. Well don't worry, because that's what we're going to do next: learn to parameterize components with props.
+--------------------=============================
+--------------------=============================
+--------------------=============================
+6. PROPS
+Where HTML elements have "attributes," React components have "props" (short for "properties"). It's a different name for essentially the same thing. Think about how you would customize a plain function. This might seem a bit basic but bear with me. Let's say you have this function:
+[function greet(){
+  return "Hi dyouuu"
+}]
+It works great, but it's pretty limited since it will always return "Hi youu". What it you want to greet someone else? You'd pass in their name as an argument.
+[function greet(name){
+  return "Hi "+ name;
+}]
+Where functions have arguments, components have props. Props let you pass data to your components.
+------------------------
+#Passing Props
+Here is a bit of JSX passing a props called name witha  string value of "Dave" into the Person componnent:
+[ <Person name="Dave"/> ]
+Here's another exampe, passing a className prop with the value "person":
+[ <div className="person"/> ]
+JSX uses className instead of class to specifyc CSS classes. You will forget this over and over. You will type "class" out of habit, and React will warn you about it. That's fine, Just change it to className. Notice how the div is self-closing? This ability isn't just for <Input/> anymore: in JSX, every component can be self-closing. In face, if the component has no children (no contents), the convention is to write it like this, instead of using a closing tag like <div></div>. In this next component, we're passing a string for className, a number for the age prop, and a actual JavaScript expression as the name:
+[function Dave(){
+  const fistName = "Dave"
+  const lastName = "Ceddia"
+
+  return(
+    <Person
+      className="person"
+      age={33}
+      name={firstName + ' ' +lasName}
+    />
+  )
+}]
+Remember that in JSX, singles braces must surroun JavaScript expressions. The code in the braces is real JavaScript, and it follows all the same scopping rules as normal JavaScript. It's important to understand that the JS inside then braces must be an expression, not a statement. Here are a few things you cand do inside JSX expressions:
+--> Math, concatenation : {7+5} or {'Your'+ 'Name'}
+--> Function calls: {this.getFullName(person)}
+--> Ternary(?) operator: {name === 'Dave' ? 'me' : 'not me'}
+--> Boolean expressions : {isEnabled && 'enabled'}
+Here are some things you cannot do:
+--> Define new variables with let, cosnt, and var
+--> use if, for, while, etc
+--> Define functions with function
+Remeber that JSX evaluates to JavaScript, which means the props become keysh and values in an object. Here's that example from above, transformed into JavaScript:
+[function Dave(){
+  const firstName = 'Dave'
+  cosnt lastName = 'Ceddia'
+ 
+  return React.createElement(Person, {
+    age: 33,
+    name: firstName+ ' '+ lastName,
+    className: 'person'
+  }, null)
+}]
+All of the rules that apply to function arguments apply to JSX expressions. Could you call a function like this?
+[ myFunc(const x = true; x && 'is true') ]
+Of course not! That looks completely wrong. If you tried to pass that argument to a JSX expression, this is what you'd get:
+[
+<Broken value={const x=true; && 'is true'}/>
+//gets compiled to:
+React.createElement(Broken, {
+  value: cosnt x = true; x && 'is true'
+}, null)
+]
+So, when you're trying to decide what to put in JSX expression, ask yourself. "Could I pass this as a function argument?"
+------------------------
+#Receiving Props
+Props are passed as an object, and are the first argument to a component functions, like this:
+[
+function Hello(props){
+  return(
+    <span>Hello, {props.name}</span>
+  )
+}
+
+//used like:
+<Hello name="Dave">
+]
+It works the same way for arrow function:
+[
+const Hello = (props) => (
+  <span>Hello, {props.name}</span>
+)]
+ES6y has a new syntax called destructuring which makes props easier to work with. It looks like this:
+[const Hello = ({name}) => (
+  <span>Hello, {name}</span>
+)]
+You can read {name} as "extract the `name` key from the object passed as the first argument, and put in a variable name". You can extract multiple keys at the same time, too:
+[const Hello = ({firstName, lasName}) => (
+  <span>Hello, {firstName} {lastName}</span>
+)]
+In practice, props are very often written using this destructuring syntax. Just so you know, it works outside of function arguments as well. You can destructure props this way, for instance:
+[const Hellp = (props) => {
+  const {name} = props;
+  return(
+    <span>Hello, {name}</span>
+  )
+}]
+Remember, arrow function need a return if the body is surrounded by braces, and it needs braces if the body contains multiple lines.
+-------------
+#Modifying Props
+One important thing to know is that props are read-only. Components that receive props must not change them. If you come from a framework that has two-way binding (like AngularJS 1.x) this is a change. In React, data flows one way. Props are read-only, and can only be passed down to children.
+-------------
+#Communicating with Parent Components
+If you can't change props, but you need to communicate something up to a parent component, how does that work? If a child needs to send data to its parent, the parent can send down a function as a prop, like this:
+[function handleAction(event){
+  console.log('Child did: ', event)
+}
+
+function Parent(){
+  return(
+    <Child onAction={handleAction}/>
+  )
+}]
+The Child component receives the onAction prop, which it can call whenever it needs to send up data or notify the parent that something happened. One place where it's common to pass function as props is for handling events. For instance, the built-in button element accepts an onClick props, which it'll call when the button is clicked.
+[function Child({onAction}){
+  return(
+    <buton onClick={onAction}/>
+  )
+}]
+We'll learn more about event handling later on.
+==================================================
+==================================================
+==================================================
+7. EXAMPLE: TWEET WITH PROPS
+Now that you have a basic understanding of props, let's see how they work in practice. We'll take the static Tweet example from Chapter 5 and rework it to display dynamic data by using props. For this examle, make copy of the static-tweet project folder so that we can work without fear of breaking the old code. We'll also start up a development server (stop the old one if it's still running)
+[cp -a static-tweet props-tweet && cd props-tweet
+ npm start]
+Note: Don’t use cp -r since it does not preserve symlinks, and can break npm start.
+If, after copying the project, the npm start command fails, delete the node_modules folder and run npm install. Then try npm start again. Open up src/index.js. To begin with, update the Tweet component to accept a tweet prop as shown below. Thena dd the testTweet object, which will sever as our fake data, and update the call to ReactDOM.render to pass the testTweet object as the tweet prop. Refresh the page after making these changes and make sure everything looks the same as before (nothing should be different yet)
+[
+//add the {tweet} props, destructured
+function Tweet({tweet}){
+  return(
+    <div>
+      <Avatar/>
+      <div>
+	<Author/><Time/>
+	<Message>
+	<div>
+	  <ReplyButton/>
+	  <RetweetButton/>
+	  <LikeButton/>
+	  <MoreOptionsButton>
+	</div>
+      </div>
+    </div>
+  )
+}
+
+//...
+
+const testTweet = {
+  message: "Something about cats",
+  gravartar: "xyz",
+  author:{
+    handle: "catperson",
+    name: "IAMA Cat Person"
+  },
+  likes: 2,
+  retweets: 0,
+  timestamp: "2016-06-30 21:24:37"
+}
+
+ReactDOM.render(<Tweet tweet={testTweet}/>, 
+  document.querySelector('#root'))
+]
+==> Avatar
+Let's start converting the static components to accept props, starting with Avatar. In the render method of Tweet, replace this line:
+[ <Avatar/> ]
+With this line:
+[ <Avatar hash={tweet.gravatar}/> ]
+This passes the tweet's gravartar property into the hash prop. Now update Avatar to use this new prop:
+[function Avatar({hash}){
+  const url = `http://www.gravartar.com/avatar/${hash}`
+  return(
+    <img
+      src={url}
+      className="avatar"
+      alt="avatar"
+    />
+  )
+}]
+The Gravartar hash, passed n as has using ES6 destructuring, is incorporated into the URL and passed to the image tag as before.
+==> ES6: Template Strings
+Here's a little more ES6 for you: the backticks around the URL string are a new syntax for template strings. The ${hash} part will he replaced with the hash itself. This new syntax is a bit cleaner than concatenating strings like "https://www.gravartar.com/avatar/" + hash. It's especially nice when you need to concatenate multiple strings together. Consider:
+[//using a template string:
+person = `${firstName} ${lastName}`
+//versus concatenation
+person = firstName + " " + lastName
+
+//or, building a url:
+url = `foo.com/users/${userId}/items/${itemId}`
+//versus
+url = "foo.com/users/" + userId + "/items/" + itemId]
+The avatar should render the same as before. You can replace the  Gravatar hash with your own if you like. Visit https://daveceddia.com/gravatar,
+type in your email, and copy the hash. (If you don’t have a Gravatar account, you can create one at https://gravatar.com).
+==> Message
+Now we'll do Message. Replace this line in the render method of Tweet:
+[ <Message/> ]
+With this line:
+[ <Message text={tweet.message}/> ]
+We're extracting the message from the tweet and passing it along to the Message component as text. Then update the Message component to use the new prop:
+[function Message({text}){
+  return(
+    <div className="message">
+      {text}
+    </div>
+  )
+}]
+Instead of static text in the div, we're rendering the text prop that was passed in. Refresh now, and you'll see the message is now "Something about cats". Success!!
+==> Author and Time
+This time we'll convert two components at once: Author and Time. Update Tweet to pass the relevant data by replacing this line in render:
+[ <Author/><Time/> ]
+With these lines:
+[ <Author author={tweet.author}/> 
+  <Time time={tweet.timestamp}/> ]
+We're also goint to introduce a library called Moment.js to work with dates and times. We will use it to calculate the relative time string ("3 days ago"). Run this comand in the terminal to install Moment:
+[ npm install moment ]
+Then we need to import Moment at the top of our index.js file, so add this line at the top:
+[ import moment from 'moment' ]
+Now update the Author and Time components. You'll notice that Time uses the new moment library.
+[function Author({author}){
+  const {name, handle} = author'
+  return(
+    <span>
+    <span>
+  )
+}]
+
+8. PROPTYPES
+9. CHILDREN
+10. EXAMPLE: GITHUB FILE LIST
+11. STATE IN CLASSES
+12. THE COMPONENT LIFECYCLE
+13. API REQUESTS IN REACT
+14. STATE IN FUNCTIONS
+15. THINKING ABOUT STATE
+16. INPUT CONTROLS
+17. THE useReducer HOOK
+18. THE useEffect HOOK
+19. THE CONTEXT API
+20. EXAMPLE SHOPPING SITE
+21. WHERE TO GO FROM HERE
