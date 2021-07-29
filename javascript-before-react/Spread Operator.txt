@@ -1,0 +1,49 @@
+THE .. SPREAD OPERATOR
+(https://daveceddia.com/react-redux-immutability-guide/)
+-----------------------------------
+These examples make heavy use of the spread operator for arrays and objects. Here’s how it works. When this ... notation is placed before an object or array, it unwraps the childrent within, and insert them right there.
+[
+//For arrays:
+let nums = [1, 2, 3];
+let newNums = [...nums] // result => [1,2,3]
+nums === [newNums] // result => false! it's a new Array
+
+//For Objects:
+let person = {
+  name: "Lix",
+  age: 33
+}
+let newPerson = {...person};
+person === newPerson //result => false! it's a new object
+
+//Internal Properties are Left alone:
+let company = {
+  name: "Foo Corp",
+  people: [
+    {name: "Joe"},
+    {name: "Alice"},
+  ]
+}
+let newCompany = {...company};
+newCompany === company // result => false! not the same object
+newCompany.people === company.peopls // => true!
+]
+When sued as shown above, the spread operator makes it easy to create a new object or array that contains the exact same contents as another one. This is useful for creating a copy of an object/array, and then overwriting specific properties that you need to change:
+[let liz = {
+  name: "Liz",
+  age: 33,
+  location: {
+    city: "Portland",
+    state: "Oregon"
+  },
+  pets: [
+    {type: "cat", name: "Redux"}
+  ]
+}
+
+//Make Liz one year older, while leaving everything, else the same
+let olderLiz = {
+  ...liz,
+  age: 35
+}]
+The spread operator for objects is part of standard JavaScript as of ES2018.
